@@ -1,1 +1,41 @@
-kjsdfhkhdf
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Santiago Sanz Wuhl}
+\title{Práctica 4: Calor de Reacción por Calorimetría}
+\begin{document}
+\maketitle
+\section{Objetivo}
+\quad El objetivo de esta práctica es medir cuál es el calor desprendido en la reaccioń de HCl con NaOH. Para ello tendremos primero que conocer cuál es el equivalente en agua del calorímetro que usaremos. El equivalente en agua de un calorímetro se define como la masa de agua para la cual, con el mismo calor, aumenta la misma cantidad de grados. Sabiendo esto, mezclaremos en el calorímetro agua fría con agua caliente, lo dejaremos reposar y mediremos la temperatura final. 
+
+Si tuviesemos un sistema perfectamente aislado, la temperatura final correspondería con la temperatura media entre las dos masas de agua(por que mezclaremos la misma cantidad de agua fría que de agua caliente), pero como no disponemos de uno, medimos que la temperatura de equilibrio será menor que la media, por que parte del calor cedido por el agua caliente será absorbido por el calorímetro. Usando esto mediremos el equivalente en masa de agua del calorímetro. 
+\section{Fundamento Teórico}
+\quad El calor cedido por el agua caĺiente al medio viene dado por la siguiente expresión:
+\begin{center}
+$Q_{c} = Q_{f} + Q_{t}$ \\
+$m_{c}C_{e}(t_{e}-t_{c})=m_{f}C_{e}(t_{e}-t_{f})+m_{E}C_{e}(t_{e}-t{f})$ \\
+\end{center}
+De donde deducimos que el equivalente en agua del calorímetro será:
+\begin{center}
+$m_{E} = \frac{m_{c}t_{e}-t_{c}}{t_{e}-t_{f}} - m_{f}$
+\end{center}
+\section{Desarrollo de la Práctica}
+\subsection{Cálculo del Equivalente en Agua}
+\quad Comenzamos echando 200 mL de agua en el calorímetro. Esto nos servirá para comprobar que podemos colocar el termómetro a una altura cómoda, de forma que no nos entorpezca al medir la temperatura de equilibrio. Una vez establecida una altura cómoda, pasamos el termómetro por agujero del tapón del calorímetro y lo fijamos ahí con un plástico. Vaciamos el termo y le echamos 100mL de agua a temperatura ambiente y 100mL de agua caliente. \\
+Los datos obtenidos serán:
+\begin{center}
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+       & T inicial caliente(ºC) & T inicial fría(ºC) & T de equilibrio(ºC) & Masa equivalente(g) \\ \hline
+1:     & 21                     & 55                 & 35.5                & 42            \\ \hline
+2:     & 22                     & 59                 & 37                  & 46.66            \\ \hline
+Media: & 21.5                   & 57                 & 36.25               & 44.33      \\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+\subsection{Determinación del calor de una Reacción de Neutralización}
+Comenzamos preparando la disolución 100mL 1M de NaOH, por que la reacción NaOH + $H_{2}O$ libera más calor que la reacción de clorhídrico. Para ella necesitamos 4g de NaOH que diluiremos en un vaso de precipitado a parte. 
+\end{document}
