@@ -17,19 +17,19 @@ asociado."""
 """
 
 
-E=7.0e-1
-dx=10**-3
-energias=[]
-perdidas=[]
-distancias=[]
+E = 7.0e-1
+dx = 10**-5
+energias = []
+perdidas = []
+distancias = []
 while E>0:
 	for i in data:
-		if i[0]>E:
-			SE=i[1]
+		if i[0] > E:
+			SE = i[1]
 			break
 	energias.append(E)
 	perdidas.append(SE)
 	distancias.append(dx)
-	dx=dx+10**-3
-	E=E-SE*dx
+	dx = dx + 10**-3
+	E = E - SE*dx
 print(energias,perdidas,distancias,sep='\n')
