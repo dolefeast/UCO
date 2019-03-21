@@ -1,3 +1,4 @@
+from time import sleep
 data = []
 with open("./data.txt") as openfile:
 	for i in openfile:
@@ -17,19 +18,20 @@ asociado."""
 """
 
 
-E = 7.0e-1
-dx = 10**-5
-energias = []
-perdidas = []
-distancias = []
+E = 0.7
+dx = 0.001
+dn = 2.37
+log = open('./plotdata.dat', 'w+')
+log.write('#x	E	dE \n')
+x = 0
 while E>0:
 	for i in data:
 		if i[0] > E:
 			SE = i[1]
 			break
-	energias.append(E)
-	perdidas.append(SE)
-	distancias.append(dx)
-	dx = dx + 10**-3
-	E = E - SE*dx
-print(energias,perdidas,distancias,sep='\n')
+	dE = SE * dx * dn
+	log.write(str(x) + ", " + str(E) + ", " + str(dE) + "\n")
+	x += dx
+	E -= dE
+log.write('#x 	E	dE')
+log.close()
