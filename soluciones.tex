@@ -1,0 +1,396 @@
+\documentclass[a4paper]{article}
+
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+\title{Soluciones de las preguntas de teoría}
+\author{Santiago Sanz Wuhl}
+
+\begin{document}
+\maketitle
+
+\paragraph{Explique en qué consisten las hipótesis de medio continuo
+(partícula fluida) y de equilibrio termodinámico local, indicando
+los parámetros que loas caracterizan ¿Por qué la segunda es mucho
+más restrictiva que la primera?} 
+
+Al estudiar la mecánica de fluidos, el primer problema que uno se 
+encuentra es que los fluidos son materia y la materia es discreta.
+Para simplificar los cálculos, vamos a dividir el fluido en cuestión
+en diferentes parcelas de volumen $\delta V$, de forma que 
+a los parámetros que definen el sistema se les pueda asignar un valor
+continuo en función de $\vec{x}$ y el tiempo, donde la parcela 
+(partícula fluida) se ubica en las proximidades de $\vec{x}$. 
+
+Esta parcela tiene que ser mucho mayor que la distancia media $d$ entre
+las partículas que forman el medio, pero mucho menor que la longitud
+característica del medio L (la longitud que hay que recorrer para 
+poder apreciar variaciones en los parámetros que definen el sistema).
+
+Con estas restricciones tenemos que $\delta V$ es lo suficientemente
+grande como para que añadir una partícula no represente un cambio 
+significativo en el parámetro a medir y por tanto éste no dependa
+del tamaño de $\delta V$, pero lo suficientemente pequeño como para
+que los parámetros sean constantes a lo largo de la partícula fluida.
+
+La termodinámica estudia sistemas en equilibrio y por tanto todos los
+parámetros que caracterizan un sistema serán constantes en el tiempo y
+en el espacio. En la mecánica de fluidos los sistemas que se estudian 
+son sistemas que no están en equilibrio, y por tanto pueden variar
+tanto en el espacio como en el tiempo.
+
+La hipótesis de equilibrio termodinámico local consiste en asumir que 
+las partículas fluidas se encuentran en equilibrio termodinámico, lo
+que nos permite usar resultados de la termodinámica y definir la 
+presión y la temperatura.
+
+Como las partículas transmiten momento y energía mediante colisiones,
+ajustan su estado con las partículas vecinas. Por tanto si definimos
+el recorrido libre medio $\lambda$ como la distancia que recorre una partícula
+antes de chocar con otra partícula, si $\lambda \ll L$, entonces una
+partícula chocará con su entorno muchas veces antes de cambiar a 
+una región del espacio en la que las propiedades sean diferentes. 
+
+De esta forma la condición de equilibrio termodinámico local es uqe $\lambda \ll L$.
+
+Esta hipótesis es mucho más restrictiva que la hipótesis de medio 
+continuo ya que $\lambda$ es mucho más grande que $d$.
+\newpage
+\paragraph{Indique por qué el movimiento en el entorno de un punto 
+fluido está caracterizado por el tensor gradiente de velocidades.
+Diga en qué dos tensores se descompone éste y lo que cada uno de ellos
+representa. Por facilidad utilize coordenadas cartesianas.} 
+Supongamos una línea fluida ubicada entre los puntos $\vec{x}$ y $\vec{x} + \vec{dx}$.
+Como la velocidad no es uniforme, en primera aproximación valdrá 
+$$\vec{v}(\vec{x}+\vec{dx}) = \vec{v}(\vec{x}) + \vec{dx} \nabla \vec{v}$$ en $\vec{x} + \vec{dx}$.
+De esta forma, transcurrido un tiempo $dt$, los extremos de la línea
+fluida se encontrarán en $\vec{x} + \vec{v}dt$, y $(\vec{x} + \vec{dx}) + (\vec{v} + \vec{dv})dt$.
+No es difícil ver que el término $\vec{v}dt$ se corresponde a una traslación
+mientras que el término $\vec{dv}dt$ se corresponde a una deformación.
+
+Dado que $\vec{dv}= \vec{dx} \nabla \vec{v}$, podemos separar $\nabla \vec{v}$ 
+en un tensor simétrico y en un tensor antisimétrico, de forma que 
+\begin{align*}
+	\nabla \vec{v} = \frac{1}{2} \left( \nabla \vec{v} + \nabla \vec{v} ^T \right)
+	+ \frac{1}{2} \left(\nabla \vec{v} -\nabla \vec{v} ^T \right) =\overline{\overline {T}}_d +\overline{\overline {T}}_r
+\end{align*}
+
+\begin{align*}
+	T_r = \frac{1}{2}\begin{bmatrix} 0 & \partial_1 v_2 - \partial_2 v_1& \partial_1 v_3 - \partial_3 v_1 \\
+		\partial_2 v_1 - \partial_1 v_2 &
+		0 &
+		\partial_2 v_3 - \partial_3 v_2 \\
+		\partial_3 v_1 - \partial_1 v_3&
+		\partial_3 v_2 - \partial_2 v_3&
+	0
+	\end{bmatrix} 
+\end{align*}
+Y se puede observar que los elementos no diagonales son las componentes
+de un vector $\vec{\omega} = \nabla \times \vec{v}  $ que es dos 
+veces la vorticidad. 
+
+Vemos así que si $\overline{\overline{T}}_d$ es nulo, el movimiento
+se simplifica a un movimiento de sólido rígido, de rotación y de 
+traslación.
+
+$\overline{\overline{T}}_d$ representa por tanto la deformación. Como
+la deformación no tiene por qué necesariamente ser en la dirección
+de $\vec{dx}$, vemos cuánto se ha dilatado la línea fluida 
+proyectando $\overline{\overline{T}}_d$ sobre  $\vec{dx}$. Si llamamos
+$\hat{n}$ al vector unitario que rige la dirección de $\vec{dx}$, 
+entonces la velocidad de deformación será 
+\begin{align*}
+	d \vec{v}_d = \overline{\overline{T}}_d\cdot \vec{dx}   = \overline{\overline{T}}_d\cdot \hat{n}  dx 
+\end{align*}
+y como ya hemos dicho, en general $\vec{dx}$ no apunta en la dirección
+de la deformación, por lo que la velocidad de deformación en la 
+dirección $\hat{n}$ es 
+\begin{align*}
+	\hat{n}\cdot \overline{\overline{T}}_d\cdot \hat{n}  dx
+\end{align*}
+\newpage
+
+\paragraph{Deformación de un elemento cúbico de fluido} 
+
+Supongamos un elemento cúbico de fluido con aristas $\vec{dl}$.
+En un siguiente instante las aristas se encontrarán en 
+\begin{align*}
+\vec{dl} + \vec{dv}dt =  \vec{dl} + \vec{dx}\nabla \vec{v}dt 
+\end{align*}
+Y por tanto vemos que por ejemplo la arista que inicialmente 
+se encontraba en 
+\begin{align*}
+	\vec{dl} = dl (1, 0, 0)
+\end{align*}
+se encuentra ahora en la posición 
+\begin{align*}
+	\vec{dl} = dl(1 + \partial_1 v_1 dt, \partial_1 v_2dt,  \partial_1 v_3dt)
+\end{align*}
+
+Si estudiamos ahora el plano $x_1x_2$ vemos que el ángulo que estos
+dos ejes forman ha variado una cantidad  
+\begin{align*}
+\partial_1 v_2 + \partial_2 v_1
+\end{align*}
+Generalizando para las tres direcciones, vemos que los componentes no
+diagonales del tensor unitario de velocidades de deformación son 
+las componentes de la mitad de la velocidad de deformación angular.
+
+Por otro lado, si consideramos que las direcciones son las direcciones
+principales de deformación, el tensor será diagonal y las deformaciones
+serán únicamente longitudinales. 
+
+Finalmente, el nuevo volumen de nuestro cubo será 
+\begin{align*}
+dl 
+\begin{vmatrix}
+	1 + \partial_1 v_1dt &\partial_1 v_2dt &\partial_1 v_3dt \\
+	\partial_2 v_1dt &1 + \partial_2 v_2dt &\partial_2 v_3dt \\
+	\partial_3 v_1dt &\partial_3 v_2dt &1 + \partial_3 v_3dt \\
+\end{vmatrix}
+= dl^3 + (\partial_1 v_1 + \partial_2 v_2 + \partial_3 v_3) dt
+\end{align*}
+Y concluimos finalmente que $\nabla\cdot \vec{v}$ es la velocidad
+de dilatación cúbica unitaria.
+
+\newpage
+\paragraph{Encuentre la ecuación de continuidad a partir del
+balance de masa en un volumen fluido. A partir de la ecuación de 
+continuidad encuentre la condición matemática que debe cumplir
+el campo euleriano de velocidades de un fluido para que éste sea
+incompresible.} 
+
+En un volumen fluido la ecuación de balance de masa no es más que 
+el teorema de transporte de Reynolds aplicado a la magnitud fluida 
+$\rho$, o masa por unidad de volumen. 
+\begin{align*}
+	\frac{d}{dt}\int_{V_f} \rho dV = \frac{d}{dt}\int_{V_c} \rho dV + \oint_{\Sigma_c} \rho (\vec{v} - \vec{v_c})d \vec{s} = 0
+\end{align*}
+que se iguala a cero por el principio de conservación de la masa.
+
+Si suponemos, por simplicidad, un volumen de control constante, 
+entonces sabemos que $\vec{v}_c= 0$
+Usando el teorema de Gauss transformamos la integral de superficie 
+en una integral de volumen 
+\begin{align*}
+	\oint_{\Sigma_c} \rho \vec{v} d\vec{s} = 
+	\int_{V_c} \nabla \cdot (\rho \vec{v})d \vec{s} 
+\end{align*}
+y finalmente obtenemos que 
+\begin{align*}
+	\frac{d}{dt}\int_{V_c} \rho dV +	\int_{V_c} \nabla \cdot (\rho \vec{v})d \vec{s}  = \int_{V_c}\left[  \frac{\partial \rho}{\partial t} + \nabla\cdot (\rho \vec{v}) \right]dV  = 0
+\end{align*}
+
+Como esta ecuación debe ser válida para cualquier $V_c$, se debe cumplir
+que el integrando sea nulo, y llegamos así a la ecuación de continuidad
+\begin{align*}
+  \frac{\partial \rho}{\partial t} + \nabla\cdot (\rho \vec{v}) = 0
+\end{align*}
+
+Sabemos que para que un fluido sea incompresible tiene que cumplir que
+$\rho$ es constante. Operando en la ecuación de continuidad
+\begin{align*}
+	\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \vec{v}) &= 
+\rho\nabla\cdot  \vec{v} = 0
+\end{align*}
+Y por tanto concluimos que la condición que ha de cumplir es que $\nabla \cdot  \vec{v} = 0$
+
+\newpage
+\paragraph{Fuerzas de volumen y superficie sobre una partícula fluida.
+El tensor de escuerzos; deducción y criterio de signos.} 
+Las fuerzas que actúan sobre un fluido (o un sólido) pueden ser 
+de volumen o de superficie. Las fuerzas de volumen son aquellas que 
+tienen una longitud característica mucho mayor que $d$ y un radio
+de acción del orden de $L$. Estas fuerzas son capaces de adentrarse
+en el fluido y actuar sobre todas las partículas fluidas que lo 
+conforman.
+
+En la interfase entre dos superficies (reales o imaginarias) aparecen
+fuerzas de origen molecular que decaen muy rápido, y no son 
+apreciables a distancias mayores que $d$. Estas fuerzas aparecen
+debido a la agitación térmica de las partículas que intercambian 
+momento y energía con sus alrededores, dando así la aparición 
+macroscópica de fuerzas superficiales. 
+
+Estas fuerzas dependen de la orientación, y por tanto llamamos
+$\vec{f}_n$ al esfuerzo en la dirección $\hat{n}$. Como $\hat{n}$ solo
+depende de la orientación, tenemos 2 grados de libertad y por tanto
+una doble infinitud de fuerzas a tener cuenta. En realidad el número
+de dependencias es mucho más pequeño. 
+
+$\vec{f}_n$ es el esfuerzo que ejerce el fluido situado en el lado hacia el que 
+está dirigido $\hat{n}$ sobre el fluido situado en el lado contrario.
+
+Sea el tetraedro de Cauchy de aristas $dx1dx2dx3$, y $\vec{f}_1$, $\vec{f}_2$ y $\vec{f}_3$ 
+los esfuerzos aplicados a cada cara respectivamente (la cara $x_1$ 
+es la perpendicular a $x_1$). Como las fuerzas másicas son proporcionales
+a $dx^3$ (siendo $dx$ del orden de $dx1,dx2,dx3$), y las fuerzas
+de superficie proporcionales a $dx^2$, podemos despreciar las fuerzas
+másicas en la superficie reduciendo nuestro problema a un problema 
+de equilibrio de esfuerzos, de forma que 
+\begin{align*}
+	\vec{f}_1 dA_1 + \vec{f}_2 dA_2 + \vec{f}_3 dA_3 = \vec{f}_n dA_n
+\end{align*}
+Si  $dA_n$ es la cara perpendicular a $\hat{n}$, entonces debe cumplirse que
+\begin{align*}
+	dA_i = n_i dA
+\end{align*}
+Siendo $\hat{n} = \left[ n1, n2, n3\right]$ y por tanto 
+\begin{align*}
+	\vec{f}_m =  n_1 \vec{f}_1 + n_2 \vec{f}_2+n_3 \vec{f}_3 = \hat{n}
+	\begin{bmatrix}\tau_{11} &\tau_{12} &\tau_{13} \\\tau_{21} &\tau_{22} &\tau_{23} \\\tau_{31} &\tau_{32} &\tau_{33}   \end{bmatrix} = \hat{n} \cdot \overline{\overline{\tau}}
+\end{align*}
+De forma que $\overline{\overline{\tau}}$ es el llamado tensor de esfuerzos.
+
+
+\newpage
+\paragraph{¿Qué son fluidos newtonianos?¿Qué condición deben cumplir
+los fluidos newtonianos para que el tensor de esfuerzos viscosos tome
+la forma 
+\begin{align*}
+	\overline{\overline{\tau}}' = 2\mu \overline{\overline{T}}_d + (\mu_v - \frac{2}{3}\mu) \nabla\cdot \vec{v} \overline{\overline{I}}
+\end{align*}
+¿Qué son los coeficientes $\mu$ y $\mu_v$?} 
+
+Los fluidos newtonianos son aquellos que cumplen que el tensor de 
+esfuerzos viscosos es proporcional a las velocidades de deformación.
+\begin{align*}
+\tau'_{ij} = \alpha_{ijkl}\gamma_{kl}
+\end{align*}
+
+Para que el tensor de esfuerzos viscosos tome la forma dada se debe
+cumplir que el fluido sea isótropo. De esa forma al expresar los 
+tensores en la base principal de $\overline{\overline{T}}_d$ tenemos
+que la proporcionalidad depende únicamente de 2 constantes. 
+
+Los coeficientes $\mu$ y $\mu_v$ son los coeficientes de viscosidad
+y de viscosidad cinemáticos, respectivamente. Se relacionan a través
+del coeficiente segundo de viscosidad $\mu_v = \lambda + \frac{2}{3}\mu_v$
+
+\newpage
+\paragraph{Enuncie la ley de Navier Poisson e indique las condiciones
+que debe cumplir un fluido para que se verifique dicha ley y las 
+implicaciones de cada una de esas condiciones} 
+
+Si el fluido se encuentra en reposo en algún sistema de referencia
+la ley de Poisson dice que los esfuerzos son todos normales a la
+superficie del fluido y no dependen de la direción
+En cualquier sistema de referencia se puede escribir el tensor
+de esfuerzos viscosos como
+\begin{align*}
+	\overline{\overline{\tau}}' = 2\mu \overline{\overline{T}}_d + (\mu_v - \frac{2}{3}\mu) \nabla\cdot \vec{v} \overline{\overline{I}}
+\end{align*}
+
+Para que esto se verifique el fluido ha de ser newtoniano e isótropo.
+Un fluido newtoniano es aquel que el tensor de esfuerzos viscosos es
+proporcional al tensor gradiente de velocidades, y al ser isótropo,
+el tensor de velocidades unitarias de deformación es diagonal.
+
+
+\newpage
+\paragraph{Sea la ecuación 
+\begin{align*}
+	\rho \frac{D \vec{v}}{Dt} = - \nabla p + \nabla \cdot \overline{\overline{\tau}} + \rho \vec{f}_m
+\end{align*} 
+diga de qué ecuación s trata y lo que representa. Indique el nombre y 
+el significado físico de cada uno de los términos que aparecen en ella.
+¿Por qué debe usarse la derivada material en esta ecuación?} 
+
+Se trata de la ecuación de conservación de cantidad de movimiento y representa
+la evolución de la cantidad de movimiento de una partícula fluida, 
+o la segunda ley de Newton para un fluido.
+El primer término se corresponde con un gradiente de presiones que 
+resulta siempre normal a la superficie del fluido, el segundo 
+término se corresponde con los esfuerzos debidos a la viscosidad
+del fluido y el último término es la aportación a la cantidad de 
+movimiento de las fuerzas másicas.
+
+Se utiliza la derivada material por que esto nos permite estudiar las
+fuerzas que se ejercen sobre una determinada partícula fluida y usar
+la descripción lagrangiana en vez de la euleriana.
+\subparagraph{Obtenga a partir de esta ecuación la ecuación de Bernouilli
+incando las hipótesis que debe realizar. A partir de la ecuación 
+anterior encuentre la condición que debe cumplirse en un líquido
+en equilibrio indicando las suposicones y condiciones que utilice
+para ello. Suponga el caso más general en el que el sistema de 
+referencia respecto al que se estudia el fluido no es inercial.
+¿Qué ventajas puede implicar este hecho?} 
+
+Consideramos perfecto el fluido, será por lo tanto incompresible
+y de viscosidad uniforme.
+Por ser incompresible, y de la ley de Navier-Poisson 
+\begin{align*}
+	\overline{\overline{\tau}}' = 2\mu \overline{\overline{T}}_d
+\end{align*}
+(Asumiendo ya que el fluido es newtoniano e isótropo) ya que la 
+divergencia de la velocidad es nula.
+
+Por ser de viscosidad uniforme verifica que 
+$$\nabla \cdot \overline{\overline{\tau}}'= \mu \nabla \times (\nabla \times \vec{v}) $$
+
+Aplicada a la ecuación de balance de cantidad de movimiento 
+\begin{align*}
+	\rho \frac{D \vec{v}}{Dt} = - \nabla p + \nabla \cdot \overline{\overline{\tau}} + \rho \vec{f}_m = -\nabla p + \mu \nabla \times (\nabla \times \vec{v})  + \rho \vec{f}_m
+\end{align*}
+Al ser $\rho$ constante podemos escribir 
+\begin{align*}
+	\frac{D \vec{v}}{Dt} = - \nabla \frac{p}{\rho }+ \vec{f}_m + \nu \nabla \times (\nabla \times \vec{v})  
+\end{align*}
+Siendo $\nu =  \mu / \rho$.
+
+En el caso de movimientos estacionarios, el coeficiente $\nu$ sea 
+despreciable y de que las fuerzas másicas sean conservativas($\vec{f}_m = - \nabla U$ ), entonces 
+\begin{align*}
+	\frac{D \vec{v}}{Dt}= \nabla \left(\frac{p}{\rho} + U\right)
+\end{align*}
+Usando la igualdad general 
+\begin{align*}
+	\frac{D \vec{v}}{D t} = \frac{\partial \vec{v}}{t} + \nabla \left( \frac{\| v\|^2}{2}\right) - \vec{v} \times (\nabla \times \vec{v})
+\end{align*}
+Como el término del rotacional se anulará al proyectar sobre el 
+movimiento, y al considerar movimientos estacionarios el término
+de la parcial también, llegamos a la ecuación de Bernouilli 
+\begin{align*}
+	p + \frac{\rho}{2} \| v \| ^2 + U = C_l (t)
+\end{align*}
+Si un líquido se encuentra en equilibrio entonces su energía
+debida a la traslación será nula. Esto implica que 
+\begin{align*}
+\nabla \frac{p}{\rho} - \vec{f}_m = 0
+\end{align*}
+y por tanto la fuerza es necesariamente conservativa, ya que resulta
+de un potencial.
+
+La fuerza en un sistema de referencial no inercial es 
+\begin{align*}
+\vec{f}_m = \vec{a} - \vec{a}_0 - \frac{d}{dt} \vec{\Omega} \times \vec{x} - 2 \vec{\Omega} \times \vec{v} - \vec{\Omega} \times \vec{\Omega} \times \vec{x}
+\end{align*}
+Y como las únicas fuerzas conservativas que aquí se presentan son todas
+menos Coriollis (que es nula) y la debida a la aceleración de la velocidad angular
+del sistema, entonces se debe de anular.
+
+Las ventajas de considerar un sistema de referencia no inercial es que
+si un sistema de referencia no inercial nos simplifica el problema
+podemos además estudiarlo desde un punto de vista estático, no
+dinámico.
+
+
+\end{document}
