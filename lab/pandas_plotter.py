@@ -1,7 +1,7 @@
 import sympy as sp
 from sympy.utilities.lambdify import lambdify
 import matplotlib
-#matplotlib.use('pgf')
+matplotlib.use('pgf')
 matplotlib.rcParams['axes.unicode_minus'] = False
 matplotlib.rcParams.update({
     "pgf.texsystem": "pdflatex",
@@ -59,22 +59,26 @@ for column in df.columns:
     exec("%s = df['%s']" % (column, column)) #This creates a variable with the name of the column and assigns it every value of the variable
 
 
-print(dtheta_i)
-X, Y, Z, T = sp.symbols('X, Y, Z, T')
-variables = [X, Y, Z, T] 
-dX, dY, dZ, dT = sp.symbols('dX, dY, dZ, dT')
-dvariables = [dX, dY, dZ, dT] #Los errores de las magnitudes. Tendré que apañármelas para conseguirlas del excel
-
-g = theta_i + phi
-f = lambdify(variables, g)
-dgsquared = lambdify([variables, dvariables], sum([diff(g, var)**2 * dvar**2 for var in variables for dvar in dvariables]))
-fig, ax = plt.subplots(2, 1, figsize=set_size(345))
-
-errors = []
-
+#print(dtheta_i)
+#X, Y, Z, T = sp.symbols('X, Y, Z, T')
+#variables = [X, Y, Z, T] 
+#dX, dY, dZ, dT = sp.symbols('dX, dY, dZ, dT')
+#dvariables = [dX, dY, dZ, dT] #Los errores de las magnitudes. Tendré que apañármelas para conseguirlas del excel
+#
+#g = theta_i + phi
+#f = lambdify(variables, g)
+#dgsquared = lambdify([variables, dvariables], sum([diff(g, var)**2 * dvar**2 for var in variables for dvar in dvariables]))
+#
+#errors = []
+#He decidido no hacer esto
 
 #Plotting tests
-ax[0].set_title('Ángulos')
-ax[0].plot(theta_i, psi_teo, 'o-', label=r'$\theta_i$ frente a $\psi_teórico$ ') 
-ax[1].plot(theta_i, rho, 'o-')
-#plt.show()
+fig, ax = plt.subplots(2, 2, figsize=set_size(345))
+ax[0,0].set_title('Ángulos')
+ax[0,0].errorbar(theta_i, phi, dtheta_i, dphi, fmt='o-', label=r'$\theta$', elinewidth=0.5)
+ax[0,0].legend(loc='best')
+#ax[0].plot(theta_i, psi_teo, 'o-', label=r'$\theta_i$ frente a $\psi_teórico$ ') 
+ax[1,0].plot(theta_i, rho, 'o-')
+plt.savefig('histogram.pgf')
+#print(plt.legend.__doc__)
+plt.show()
