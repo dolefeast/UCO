@@ -1,0 +1,96 @@
+\documentclass[a4paper]{book}
+
+
+\usepackage[]{pgf}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\author{Santiago Sanz Wuhl}
+\title{Cheatsheet}
+
+
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section*{Introducción}
+Este documento pretende recoger pequeñas cosas que pueden llegar a ser útiles en algún momento, de cualquier índole.
+
+\chapter{Matemáticas}
+\section{Trigonometría}
+\paragraph{Pitágoras}
+\begin{itemize}
+	\item $\sin^2 x + \cos^2x = 1$ 
+	\item $\tan^2x + 1 = \frac{1}{\cos^2x}$ 
+\end{itemize}
+
+\paragraph{Suma de ángulos}
+\begin{itemize}
+	\item $\sin\left( \alpha \pm \beta \right) = \sin\alpha \cos\beta \pm \cos\alpha \sin\beta$
+	\item $\cos(\alpha \pm \beta) = \cos\alpha \cos\beta \mp \sin\alpha \sin\beta$
+	\item $\tan\left( \alpha \pm \beta \right) = \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}$
+\end{itemize}
+
+\paragraph{Suma de funciones}
+\begin{itemize}
+	\item $\sin\alpha + \sin\beta = 2\sin\frac{\alpha + \beta}{2} \cos \frac{\alpha -\beta}{2}$
+	\item $\sin\alpha - \sin\beta = 2\cos\frac{\alpha + \beta}{2} \sin\frac{\alpha -\beta}{2}$
+	\item $\cos\alpha + \cos\beta = 2\cos\frac{\alpha + \beta}{2} \cos \frac{\alpha -\beta}{2}$
+	\item $\cos\alpha - \cos\beta =- 2\sin\frac{\alpha + \beta}{2} \sin \frac{\alpha -\beta}{2}$
+\end{itemize}
+
+\paragraph{Otras a las que no sé ponerle nombre}
+\begin{itemize}
+	\item $\sin^2x = \frac{1 - \cos2x}{2}$
+\end{itemize}
+\section{Integrales}
+\begin{itemize}
+	\item $\int_{0}^{\infty} x^{p}\exp^{-ax^2} dx= \frac{\Gamma\left( \frac{p+1}{2} \right) }{2a ^{(p+1) /2}} $
+\end{itemize}
+
+\chapter{Python}
+
+\section{Built-In}
+\begin{itemize}
+	\item Para seccionar una \texttt{str} en elementos delimitados por una string foo: \texttt{str.split(foo)} 
+\end{itemize}
+
+\section{Numpy}
+\begin{itemize}
+	\item Dada una matriz A, \texttt{A[i, j]} es el elemento que se encuentra en la fila i y la columna j
+	\item \texttt{np.random.random((i, j))} devuelve una matriz de $i$ filas por $j$ columnas de números aleatorios entre 0 y 1.
+\end{itemize}
+
+\section{Matplotlib}
+\begin{itemize}
+	\item Para dibujar una figura con $i\times j$ subfiguras (como antes, i denota fila y j columna) de tamaño \texttt{size}
+		\texttt{\\
+			fig, ax = plt.subplots(i, j,  figsize=size) \\
+			ax[i1, j2].set\_title('Título de la subfigura i1, j2') \\
+		ax[i1, j2].plot(x, y, 'o-', label='y(x)') \#\text{usando los datos dibuja} \\\text{la función y(x) con datos especificados anteriormente, }\\\text{con bolitas unidas por líneas. } \\
+			ax[i1, j2].label(loc='best') \#Dónde se coloca la leyenda
+		}
+\end{itemize}
+
+\end{document}
